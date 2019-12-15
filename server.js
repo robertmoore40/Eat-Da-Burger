@@ -2,8 +2,11 @@ var express = require("express");
 var app = express();
 var PORT = process.env.PORT || 3000;
 var exphbs = require("express-handlebars");
+var hbs = exphbs.create({
+  partialsDir:"./views/partials"
+})
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 // Serve static content for the app from the "public" directory in the application directory.
