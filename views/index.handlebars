@@ -4,65 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Burger Website</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Eat-Da-Burger</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="../public/assets/css/style.css">
 </head>
 <body>
-<div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Eat-Da-Burger App</h1>
+    <h1 class="display-4">Eat-Da-Burger</h1>
     <p class="lead">Order a new burger, or devour one already in the system! The choice is yours</p>
   </div>
 </div>
-  
-<div class="row row-eq-height">
-    <div class="col-lg-6"><h2>Burgers that are yet to be devoured!</h2>
-
-<ul>
-  {{#each burgers as |burger| }}
-    {{#unless devoured}}
-     <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
-                                <button type="button" class="change-devour btn btn-warning" id ="change-devour" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class=""></span></button>
+     
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="lefthead"><strong><h1>New Burgers</h1></strong></div>
+                <div class="panel-body">
+                    <ul>
+                        {{#each burgers}}
+                            {{#unless devoured}}
+                                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                                <button type="button" class="eatdaburger btn btn-primary" id ="eatdaburgerbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}">Eat Dis Burger NOW!</button>
                                 <hr>
-      {{!-- {{> burgers/burger-block devour=true burger=burger}} --}}
-    {{/unless}}
-  {{/each}}
-</ul></div>
-    <div class="col-lg-6">
-<h2>Burgers that are presently devoured!</h2>
-
-<ul>
-  {{#each burgers as |burger| }}
-    {{#if devoured}}
-      {{!-- {{> burgers/burger-block devour=false burger=burger}} --}}
-   <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
-                                <button type="button" class="trashburger btn btn-danger" id ="trashbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
+                            {{/unless}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="righthead"><strong><h1>Devoured Burgers</h1></strong></div>
+                <div class="panel-body">
+                    <ul>
+                        {{#each burgers}}
+                            {{#if devoured}}
+                                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                                <button type="button" class="deleteburger btn btn-danger" id ="deletebutton" data-id="{{this.id}}" data-newDevoured="{{devour}}">Get rid of this devoured burger: PERMANENTLY</button>
                                 <hr>
-    {{/if}}
-  {{/each}}
-</ul>
+                            {{/if}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+<div id="createForm">
+        <br>
+        <h1>Create a NEW burger</h1>
+        <panel>
+            <form class="create-form">
+                <div class="form-group">
+                    <label for="createBurger">New Burger:</label>
+                    <input type="text" id="createBurger" name="burger">
+                    <button type="submit" class="btn btn-dark" id="addburger">Order the described burger!</button>
+                </div>
+            </form>
+        </panel>
+    </div>
+    </div>
 </div>
-</div>
-
-
-
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
-  </div>
-
-  <div class="form-group">
-    <label for="devoured">Devour?</label><br>
-    <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-    <input type="radio" name="devoured" value="0"> Not Devoured
-  </div>
-
-  <button type="submit">Add Burger</button>
-</form>
-
-  
-</body>
-</html>
